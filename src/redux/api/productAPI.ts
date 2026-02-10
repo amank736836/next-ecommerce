@@ -17,7 +17,7 @@ import {
 export const productAPI = createApi({
     reducerPath: "productAPI",
     baseQuery: fetchBaseQuery({
-        baseUrl: `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/product/`,
+        baseUrl: `${process.env.NEXT_PUBLIC_SERVER_URL}/api/product/`,
     }),
     tagTypes: ["products"],
     endpoints: (builder) => ({
@@ -45,7 +45,7 @@ export const productAPI = createApi({
             SearchProductsRequest
         >({
             query: (params) => ({
-                url: "search",
+                url: "all",
                 params,
             }),
             providesTags: ["products"],

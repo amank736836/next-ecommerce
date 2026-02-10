@@ -17,7 +17,7 @@ import { Coupon } from "../../types/types";
 export const paymentAPI = createApi({
     reducerPath: "paymentApi",
     baseQuery: fetchBaseQuery({
-        baseUrl: `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/payment/`,
+        baseUrl: `${process.env.NEXT_PUBLIC_SERVER_URL}/api/payment/`,
     }),
     tagTypes: ["payment", "coupon"],
     endpoints: (builder) => ({
@@ -100,7 +100,7 @@ export const paymentAPI = createApi({
         }),
         createRazorpay: builder.mutation<CreateRazorpayResponse, RazorpayRequest>({
             query: ({ cartItems, shippingInfo, coupon, userId }) => ({
-                url: "createRazorpay",
+                url: "create",
                 method: "POST",
                 body: {
                     cartItems,
@@ -112,7 +112,7 @@ export const paymentAPI = createApi({
         }),
         verifyPayment: builder.mutation<VerificationResponse, RazorpayResponse>({
             query: (data) => ({
-                url: "razorpayPaymentVerification",
+                url: "verify",
                 method: "POST",
                 body: data,
             }),
