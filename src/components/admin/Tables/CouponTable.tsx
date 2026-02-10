@@ -29,13 +29,15 @@ const columns: Column<CouponDataType>[] = [
 ];
 
 const CouponTable = ({ data = [] }: { data: CouponDataType[] }) => {
-    return TableHOC<CouponDataType>(
-        columns,
-        data,
-        "dashboardProductBox",
-        "Coupons",
-        data.length > 6
-    )();
+    return (
+        <TableHOC<CouponDataType>
+            columns={columns}
+            data={data}
+            containerClassName="dashboardProductBox"
+            heading="Coupons"
+            showPagination={data.length > 6}
+        />
+    );
 };
 
 export default CouponTable;

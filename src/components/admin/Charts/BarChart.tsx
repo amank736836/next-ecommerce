@@ -29,6 +29,7 @@ interface BarChartProps {
     bgColor_1: string;
     bgColor_2: string;
     labels?: string[];
+    doubleAxis?: boolean;
 }
 
 export const BarChart = ({
@@ -40,6 +41,7 @@ export const BarChart = ({
     bgColor_1,
     bgColor_2,
     labels = [],
+    doubleAxis = false,
 }: BarChartProps) => {
     const BarChartOptions: ChartOptions<"bar"> = {
         responsive: true,
@@ -55,13 +57,24 @@ export const BarChart = ({
         },
         scales: {
             y: {
+                type: "linear",
+                display: true,
+                position: "left",
+                beginAtZero: true,
+                grid: {
+                    display: false,
+                },
+            },
+            y1: {
+                type: "linear",
+                display: doubleAxis,
+                position: "right",
                 beginAtZero: true,
                 grid: {
                     display: false,
                 },
             },
             x: {
-                beginAtZero: true,
                 grid: {
                     display: false,
                 },
@@ -79,6 +92,7 @@ export const BarChart = ({
                 barThickness: "flex",
                 barPercentage: 1,
                 categoryPercentage: 0.4,
+                yAxisID: "y",
             },
             {
                 label: title_2,
@@ -87,6 +101,7 @@ export const BarChart = ({
                 barThickness: "flex",
                 barPercentage: 1,
                 categoryPercentage: 0.4,
+                yAxisID: doubleAxis ? "y1" : "y",
             },
         ],
     };

@@ -21,8 +21,6 @@ const Login = () => {
     const [loading, setLoading] = useState<boolean>(false);
 
     const loginHandler = async () => {
-        setLoading(true);
-        const toastId = toast.loading("Signing in...");
         try {
             const provider = new GoogleAuthProvider();
             const { user } = await signInWithPopup(auth, provider);
@@ -35,22 +33,26 @@ const Login = () => {
                 role: "user",
                 dob: date,
                 _id: user.uid,
-                shippingInfo: {
-                    address: "",
-                    city: "",
-                    state: "",
-                    country: "",
-                    pinCode: "",
-                },
             });
 
-            responseToast(res, router, "/");
+            if ("error" in res) {
+                const error = res.error as any;
+                const message = error.data?.message;
+                if (message === "Please enter all fields") {
+                    toast.error("New Account? Please select Gender and Date of Birth.");
+                    return;
+                } else {
+                    toast.error(message || "Sign in failed");
+                    return;
+                }
+            }
+
+            toast.success(res.data?.message || "Welcome back");
+            router.push("/");
+
         } catch (error) {
             console.error(error);
             toast.error("Sign in failed");
-        } finally {
-            setLoading(false);
-            toast.dismiss(toastId);
         }
     };
 
@@ -63,6 +65,7 @@ const Login = () => {
                 <div>
                     <label>Gender</label>
                     <select
+                        suppressHydrationWarning
                         title="gender"
                         value={gender}
                         onChange={(e) => setGender(e.target.value)}
@@ -85,7 +88,7 @@ const Login = () => {
 
                 <div>
                     <p>Already Signed In Once</p>
-                    <button onClick={loginHandler}>
+                    <button suppressHydrationWarning onClick={loginHandler}>
                         <FcGoogle />
                         <span>Sign in with Google</span>
                     </button>

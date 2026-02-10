@@ -59,7 +59,7 @@ export const POST = async (req: NextRequest) => {
             role: userCount === 0 ? "admin" : "user",
         });
 
-        await invalidateCache({ admin: true, userId: user._id, user: true });
+        await invalidateCache({ admin: true, userId: user._id });
 
         return NextResponse.json(
             {

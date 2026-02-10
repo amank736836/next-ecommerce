@@ -2,9 +2,9 @@
 
 import { Column } from "react-table";
 import TableHOC from "./TableHOC";
-import { latestOrders } from "../../../types/types";
+import { LatestOrder } from "../../../types/types";
 
-const columns: Column<latestOrders>[] = [
+const columns: Column<LatestOrder>[] = [
     {
         Header: "Id",
         accessor: "_id",
@@ -27,8 +27,15 @@ const columns: Column<latestOrders>[] = [
     },
 ];
 
-const DashboardTable = ({ data = [] }: { data: latestOrders[] }) => {
-    return TableHOC<latestOrders>(columns, data, "orderBox", "Top Orders")();
+const DashboardTable = ({ data = [] }: { data: LatestOrder[] }) => {
+    return (
+        <TableHOC<LatestOrder>
+            columns={columns}
+            data={data}
+            containerClassName="orderBox"
+            heading="Top Orders"
+        />
+    );
 };
 
 export default DashboardTable;

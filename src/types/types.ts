@@ -96,7 +96,7 @@ type CountAndChangePercent = {
     orders: number;
 };
 
-export type latestOrders = {
+export type LatestOrder = {
     _id: string;
     amount: number;
     discount: number;
@@ -108,7 +108,7 @@ export type Stats = {
     categoryCount: {
         [key: string]: number;
     }[];
-    ChangePercent: CountAndChangePercent;
+    changePercent: CountAndChangePercent;
     count: CountAndChangePercent;
     chart: {
         order: number[];
@@ -118,7 +118,7 @@ export type Stats = {
         male: number;
         female: number;
     };
-    latestOrders: latestOrders[];
+    latestOrders: LatestOrder[];
 };
 
 export type Bar = {

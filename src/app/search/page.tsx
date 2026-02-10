@@ -84,6 +84,7 @@ const Search = () => {
                 <div>
                     <h4>Sort</h4>
                     <select
+                        suppressHydrationWarning
                         title="sort"
                         value={sort}
                         onChange={(e) => {
@@ -100,6 +101,7 @@ const Search = () => {
                 <div>
                     <h4>Max Price: {currentPrice || ""}</h4>
                     <input
+                        suppressHydrationWarning
                         title="range"
                         type="range"
                         min={0}
@@ -114,6 +116,7 @@ const Search = () => {
                 <div>
                     <h4>Category</h4>
                     <select
+                        suppressHydrationWarning
                         title="category"
                         value={category}
                         onChange={(e) => {
@@ -131,12 +134,13 @@ const Search = () => {
                     </select>
                 </div>
                 <div>
-                    <button onClick={clearHandler}>Clear</button>
+                    <button suppressHydrationWarning onClick={clearHandler}>Clear</button>
                 </div>
             </aside>
             <main>
                 <h1>Products</h1>
                 <input
+                    suppressHydrationWarning
                     type="text"
                     placeholder="Search by name..."
                     value={search}

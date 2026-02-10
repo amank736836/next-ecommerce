@@ -41,13 +41,15 @@ const columns: Column<CustomerDataType>[] = [
 ];
 
 const CustomerTable = ({ data = [] }: { data: CustomerDataType[] }) => {
-    return TableHOC<CustomerDataType>(
-        columns,
-        data,
-        "dashboardProductBox",
-        "Customers",
-        data.length > 5
-    )();
+    return (
+        <TableHOC<CustomerDataType>
+            columns={columns}
+            data={data}
+            containerClassName="dashboardProductBox"
+            heading="Customers"
+            showPagination={data.length > 5}
+        />
+    );
 };
 
 export default CustomerTable;

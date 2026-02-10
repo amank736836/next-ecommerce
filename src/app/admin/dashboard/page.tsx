@@ -22,7 +22,7 @@ import DashboardTable from "../../../components/admin/Tables/DashboardTable";
 // Default Data (Fallback)
 const statsData = {
     categoryCount: [],
-    ChangePercent: {
+    changePercent: {
         revenue: 0,
         products: 0,
         users: 0,
@@ -115,8 +115,8 @@ const Dashboard = () => {
                                     ]
                                 }
                                 percent={
-                                    stats.ChangePercent[
-                                    item.heading.toLowerCase() as keyof typeof stats.ChangePercent
+                                    stats.changePercent[
+                                    item.heading.toLowerCase() as keyof typeof stats.changePercent
                                     ]
                                 }
                                 amount={item.amount}
@@ -135,6 +135,7 @@ const Dashboard = () => {
                                 bgColor_1="rgb(0,115,255)"
                                 bgColor_2="rgba(53,162,235,0.8)"
                                 labels={last6Months}
+                                doubleAxis={true}
                             />
                         </div>
                         <div className="dashboardCategories">

@@ -36,14 +36,16 @@ const columns: Column<ProductDataType>[] = [
 ];
 
 const ProductTable = ({ data = [] }: { data: ProductDataType[] }) => {
-    return TableHOC<ProductDataType>(
-        columns,
-        data,
-        "dashboardProductBox",
-        "Products",
-        data.length > 6,
-        6
-    )();
+    return (
+        <TableHOC<ProductDataType>
+            columns={columns}
+            data={data}
+            containerClassName="dashboardProductBox"
+            heading="Products"
+            showPagination={data.length > 6}
+            pageSize={6}
+        />
+    );
 };
 
 export default ProductTable;

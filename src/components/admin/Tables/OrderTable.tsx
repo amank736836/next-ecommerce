@@ -47,14 +47,16 @@ const OrderTable = ({
     data: OrderDataType[];
     title: string;
 }) => {
-    return TableHOC<OrderDataType>(
-        columns,
-        data,
-        "dashboardProductBox",
-        title,
-        data.length > 10,
-        10
-    )();
+    return (
+        <TableHOC<OrderDataType>
+            columns={columns}
+            data={data}
+            containerClassName="dashboardProductBox"
+            heading={title}
+            showPagination={data.length > 10}
+            pageSize={10}
+        />
+    );
 };
 
 export default OrderTable;
