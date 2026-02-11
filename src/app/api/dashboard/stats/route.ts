@@ -21,7 +21,7 @@ export const GET = async (req: NextRequest) => {
         }
 
         let stats;
-        const key = "admin-stats";
+        const key = "admin-stats-frontend-v2";
 
         const cachedData = await redis.get(key);
 
@@ -194,14 +194,24 @@ export const GET = async (req: NextRequest) => {
 
             stats = {
                 categoryCount,
-                changePercent,
-                count,
+                changePercent: {
+                    revenue: changePercent.revenue,
+                    products: changePercent.product,
+                    users: changePercent.user,
+                    orders: changePercent.order,
+                },
+                count: {
+                    revenue: count.revenue,
+                    products: count.product,
+                    users: count.user,
+                    orders: count.order,
+                },
                 chart: {
                     order: orderMonthCounts,
                     revenue: orderMonthRevenue,
                 },
                 userRatio,
-                latestTransaction: latestTransactions,
+                latestOrders: latestTransactions,
             };
 
             await redis.set(key, JSON.stringify(stats));

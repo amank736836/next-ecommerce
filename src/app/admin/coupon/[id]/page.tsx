@@ -74,7 +74,7 @@ const ManageCoupon = () => {
     const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        if (!includeNumbers && !includeCharacters && !includeSymbols) {
+        if (!includeNumbers && !includeCharacters && !includeSymbols && (size - prefix.length - postfix.length > 0)) {
             return toast.error("Please select at least one character set");
         }
 
@@ -149,8 +149,12 @@ const ManageCoupon = () => {
                             type="text"
                             placeholder="Text for prefix"
                             value={prefix}
-                            onChange={(e) => setPrefix(e.target.value)}
-                            maxLength={size - postfix.length}
+                            onChange={(e) => {
+                                setPrefix(e.target.value);
+                                if (e.target.value.length + postfix.length > size) {
+                                    setSize(e.target.value.length + postfix.length);
+                                }
+                            }}
                         />
                     </div>
 
@@ -161,8 +165,12 @@ const ManageCoupon = () => {
                             type="text"
                             placeholder="Text for postfix"
                             value={postfix}
-                            onChange={(e) => setPostfix(e.target.value)}
-                            maxLength={size - prefix.length}
+                            onChange={(e) => {
+                                setPostfix(e.target.value);
+                                if (e.target.value.length + prefix.length > size) {
+                                    setSize(e.target.value.length + prefix.length);
+                                }
+                            }}
                         />
                     </div>
 

@@ -35,7 +35,7 @@ const CouponTable = ({ data = [] }: { data: CouponDataType[] }) => {
             data={data}
             containerClassName="dashboardProductBox"
             heading="Coupons"
-            showPagination={data.length > 6}
+            showPagination={data.length > 5}
         />
     );
 };

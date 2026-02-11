@@ -60,8 +60,7 @@ const Coupons = () => {
 
     return (
         <>
-            <main className="dashboardProductBox">
-                <h3>All Coupons</h3>
+            <main>
                 {rows.length > 0 ? (
                     <CouponTable data={rows} />
                 ) : (
