@@ -4,12 +4,10 @@
   text-transform: $case;
 }
 
-@mixin flex(
-  $dir: row,
+@mixin flex($dir: row,
   $justifyContent: center,
   $alignItems: center,
-  $gap: 1rem
-) {
+  $gap: 1rem) {
   display: flex;
   flex-direction: $dir;
   justify-content: $justifyContent;
@@ -48,11 +46,17 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.384);
 }
 
-@mixin btn($p: 0.5rem 1rem, $bg,$color) {
+@mixin btn($p: 0.5rem 1rem, $bg, $color) {
   cursor: pointer;
   border: none;
   outline: none;
   padding: $p;
   background-color: $bg;
   color: $color;
+}
+
+@mixin mq($width) {
+  @media (min-width: $width) {
+    @content;
+  }
 }

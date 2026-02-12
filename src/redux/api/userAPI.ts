@@ -3,6 +3,7 @@ import axios from "axios";
 import {
     AllUsersResponse,
     DeleteUserRequest,
+    LoginRequest,
     MessageResponse,
     UpdateUserRequest,
     UserResponse,
@@ -23,7 +24,7 @@ export const userAPI = createApi({
             }),
             providesTags: ["users"],
         }),
-        login: builder.mutation<MessageResponse, User>({
+        login: builder.mutation<MessageResponse, LoginRequest>({
             query: (user) => ({
                 url: "new",
                 method: "POST",

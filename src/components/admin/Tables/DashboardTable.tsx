@@ -27,11 +27,20 @@ const columns: Column<LatestOrder>[] = [
     },
 ];
 
-const DashboardTable = ({ data = [] }: { data: LatestOrder[] }) => {
+const DashboardTable = ({ data = [] }: { data: any[] }) => {
+    // Robust data mapping to handle potentially raw or transformed data
+    const tableData = data.map(item => ({
+        _id: item._id,
+        quantity: item.quantity ?? item.orderItems?.length ?? 0,
+        discount: item.discount,
+        amount: item.amount ?? item.total ?? 0,
+        status: item.status,
+    }));
+
     return (
         <TableHOC<LatestOrder>
             columns={columns}
-            data={data}
+            data={tableData}
             containerClassName="orderBox"
             heading="Top Orders"
         />

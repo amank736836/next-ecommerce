@@ -91,7 +91,7 @@ const OrderManagement = () => {
                         key={i._id}
                         className="orderProductCard"
                     >
-                        <img src={transformImage(i.photo, 64)} alt={i.name} />
+                        <img src={transformImage(i.photos?.[0]?.url, 64)} alt={i.name} />
                         <Link href={`/product/${i.productId}`}>
                             {i.name}
                         </Link>

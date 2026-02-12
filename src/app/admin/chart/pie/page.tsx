@@ -17,11 +17,11 @@ const PieCharts = () => {
 
     const { data, isLoading, isError, error } = usePieQuery(user?._id || "");
 
-    const order = data?.charts.orderFullfiillment;
+    const order = data?.charts.orderFullfillment;
     const categories = data?.charts.productCategories || [];
     const stock = data?.charts.stockAvailability;
     const revenue = data?.charts.revenueDistribution;
-    const ageGroup = data?.charts.userAgeGroup;
+    const ageGroup = data?.charts.usersAgeGroup;
     const adminCustomer = data?.charts.adminCustomer;
 
     useEffect(() => {
@@ -129,7 +129,7 @@ const PieCharts = () => {
                                 data={[
                                     ageGroup?.teen || 0,
                                     ageGroup?.adult || 0,
-                                    ageGroup?.senior || 0,
+                                    ageGroup?.old || 0,
                                 ]}
                                 backgroundColor={[
                                     "hsl(10,80%,80%)",
@@ -146,7 +146,7 @@ const PieCharts = () => {
                         <div>
                             <DoughnutChart
                                 labels={["Admin", "Customers"]}
-                                data={[adminCustomer?.admin || 0, adminCustomer?.user || 0]}
+                                data={[adminCustomer?.admin || 0, adminCustomer?.customer || 0]}
                                 backgroundColor={["hsl(335, 100%, 38%)", "hsl(44,98%,50%)"]}
                                 offset={[0, 80]}
                             />

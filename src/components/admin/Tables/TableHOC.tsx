@@ -9,8 +9,15 @@ import {
     useSortBy,
     useTable,
     TableOptions,
+    TableInstance,
+    UsePaginationInstanceProps,
+    UseSortByInstanceProps,
 } from "react-table";
 import { useMemo } from "react";
+
+type TableInstanceWithHooks<T extends object> = TableInstance<T> &
+    UsePaginationInstanceProps<T> &
+    UseSortByInstanceProps<T>;
 
 interface TableHOCProps<T extends object> {
     columns: Column<T>[];
@@ -54,19 +61,19 @@ function TableHOC<T extends object>({
         gotoPage,
         pageCount,
         state: { pageIndex },
-    } = useTable(options, useSortBy, usePagination);
+    } = useTable(options, useSortBy, usePagination) as any;
 
     return (
         <div className={containerClassName}>
             <h2 className="heading">{heading}</h2>
             <table className="table" {...getTableProps()}>
                 <thead>
-                    {headerGroups.map((headerGroup, headerGroupIndex) => (
+                    {headerGroups.map((headerGroup: any, headerGroupIndex: number) => (
                         <tr
                             {...headerGroup.getHeaderGroupProps()}
                             key={headerGroup.id || headerGroupIndex}
                         >
-                            {headerGroup.headers.map((column, columnIndex) => {
+                            {headerGroup.headers.map((column: any, columnIndex: number) => {
                                 const { key, ...restProps } = column.getHeaderProps(
                                     column.getSortByToggleProps()
                                 );
@@ -89,12 +96,12 @@ function TableHOC<T extends object>({
                     ))}
                 </thead>
                 <tbody {...getTableBodyProps()}>
-                    {page.map((row, rowIndex) => {
+                    {page.map((row: any, rowIndex: number) => {
                         prepareRow(row);
                         const { key, ...rowProps } = row.getRowProps();
                         return (
                             <tr {...rowProps} key={key || rowIndex}>
-                                {row.cells.map((cell, cellIndex) => {
+                                {row.cells.map((cell: any, cellIndex: number) => {
                                     const { key, ...cellProps } = cell.getCellProps();
                                     return (
                                         <td key={key || cellIndex} {...cellProps}>

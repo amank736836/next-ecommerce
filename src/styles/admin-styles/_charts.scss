@@ -1,27 +1,48 @@
+@import "../mixin";
+
 .chartContainer {
     background-color: white;
     padding: 4rem;
-    overflow-y: auto;
 
     >h1 {
-        margin: 0 0 5rem 2rem;
+        margin: 0 0 2rem 0.25rem;
+        @include heading;
+    }
+
+    @include flex(column, center, center, 2rem); // Mobile First: Column layout
+
+    @include mq(768px) {
+        // Tablet/Desktop: Grid layout
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 2rem;
+
+        >h1 {
+            grid-column: 1 / -1;
+            margin-bottom: 2rem;
+        }
     }
 
     >section {
-        width: 90%;
-        margin: 4rem auto;
+        width: 100%;
+        margin: 0;
+        padding: 1rem;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); // Added subtle shadow for card effect
+        border-radius: 10px;
 
         >h2 {
-            margin: 2rem 0;
+            margin: 2rem 0 0 0;
             text-align: center;
-            @include heading(2px);
+            @include heading(2rem);
+            letter-spacing: 2px;
+            font-weight: 300;
+            text-transform: uppercase;
+            font-size: 1.1rem; // Reduce font size slightly
         }
 
         >div {
-            max-width: 40rem;
+            max-width: 20rem; // Cap chart size further to ensure it fits nicely
             margin: auto;
-            margin-top: 6rem;
-            margin-bottom: -1rem;
         }
     }
 }

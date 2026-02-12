@@ -197,3 +197,13 @@ export type ReviewRequest = {
     id: string;
     productId: string;
 };
+
+export type LoginRequest = {
+    _id: string;
+    name: string;
+    email: string;
+    photo: string;
+    role: string;
+    gender: string;
+    dob: string;
+};

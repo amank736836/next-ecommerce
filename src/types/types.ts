@@ -75,7 +75,7 @@ export type OrderItem = Omit<CartItem, "stock"> & { _id: string };
 
 export type Order = {
     _id: string;
-    orderItems: orderItem[];
+    orderItems: OrderItem[];
     subtotal: number;
     shippingCharges: number;
     tax: number;
@@ -127,11 +127,10 @@ export type Bar = {
     orders: number[];
 };
 
-type OrderFullfiillment = {
+type OrderFullfillment = {
     processing: number;
     shipped: number;
     delivered: number;
-    productionCost?: number; // Added to fix potential type errors if used elsewhere
 };
 
 type RevenueDistribution = {
@@ -142,24 +141,24 @@ type RevenueDistribution = {
     marketingCost: number;
 };
 
-type UserAgeGroup = {
+type UsersAgeGroup = {
     teen: number;
     adult: number;
-    senior: number;
+    old: number;
 };
 
 export type Pie = {
-    orderFullfiillment: OrderFullfiillment;
+    orderFullfillment: OrderFullfillment;
     productCategories: Record<string, number>[];
     stockAvailability: {
         inStock: number;
         outOfStock: number;
     };
     revenueDistribution: RevenueDistribution;
-    userAgeGroup: UserAgeGroup;
+    usersAgeGroup: UsersAgeGroup;
     adminCustomer: {
         admin: number;
-        user: number;
+        customer: number;
     };
 };
 
