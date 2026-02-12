@@ -197,6 +197,15 @@ const OrderDetails = ({ params }: { params: Promise<{ id: string }> }) => {
                                             ₹{item.price} X {item.quantity} = ₹
                                             {item.price * item.quantity}
                                         </span>
+                                        {order.status === "Delivered" && (
+                                            <Link
+                                                className="reviewBtn"
+                                                onClick={(e) => e.stopPropagation()}
+                                                href={`/product/${item.productId}`}
+                                            >
+                                                Review
+                                            </Link>
+                                        )}
                                     </div>
                                 ))}
                         </section>

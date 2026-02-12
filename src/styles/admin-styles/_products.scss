@@ -30,8 +30,8 @@
     cursor: pointer;
     border: none;
     position: absolute;
-    top: 2rem; // Adjusted from 4rem
-    right: 2rem; // Adjusted from 12rem to be inside the card
+    top: 6rem;
+    right: 2rem;
     z-index: 1;
 }
 
@@ -187,6 +187,21 @@
 
     >span {
         margin-left: auto; // push the span to the right
+    }
+
+    .reviewBtn {
+        text-decoration: none;
+        background-color: rgb(5, 107, 224);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        font-size: 0.9rem;
+        margin-left: 1rem;
+        transition: all 0.3s;
+
+        &:hover {
+            opacity: 0.8;
+        }
     }
 }
 
