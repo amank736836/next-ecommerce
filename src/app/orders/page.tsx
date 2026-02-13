@@ -12,6 +12,7 @@ import { SkeletonLoader } from "@/components/Loaders/SkeletonLoader";
 import { useAllOrdersQuery, useMyOrdersQuery } from "@/redux/api/orderAPI";
 import { RootState } from "@/redux/store";
 import { CustomError } from "@/types/api-types";
+import { FaBoxOpen } from "react-icons/fa";
 
 const Orders = () => {
     const [orders, setOrders] = useState<OrderDataType[]>([]);
@@ -89,6 +90,9 @@ const Orders = () => {
 
     return (
         <div className="container">
+            <h1 style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "1rem" }}>
+                <FaBoxOpen /> My Orders
+            </h1>
             <main>
                 {finalLoading ? (
                     <SkeletonLoader

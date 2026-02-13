@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title: "VirtuoStore - Premium E-commerce",
   description: "Shop the best products at VirtuoStore. Quality, Speed, and Trust.",
   icons: {
-    icon: "/logo.svg",
+    icon: "/icon.svg",
   },
 };
 

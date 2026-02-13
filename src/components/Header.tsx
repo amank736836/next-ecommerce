@@ -1,6 +1,6 @@
 import { signOut } from "firebase/auth";
 import toast from "react-hot-toast";
-import { FaHome, FaSearch, FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
+import { FaHome, FaSearch, FaSignInAlt, FaSignOutAlt, FaInfoCircle, FaBoxOpen, FaFileAlt } from "react-icons/fa";
 import { RiDatabaseFill, RiShoppingCart2Fill } from "react-icons/ri";
 import { useSelector } from "react-redux";
 import Link from "next/link";
@@ -30,11 +30,17 @@ const Header = () => {
             <Link href="/search" title="Search">
                 <FaSearch />
             </Link>
+            <Link href="/about" title="About">
+                <FaInfoCircle />
+            </Link>
             <Link href="/cart" title="Cart">
                 <RiShoppingCart2Fill />
             </Link>
             <Link href="/orders" title="Orders">
-                Orders
+                <FaBoxOpen />
+            </Link>
+            <Link href="/policies" title="Policies">
+                <FaFileAlt />
             </Link>
             {user?.role === "admin" && (
                 <Link href="/admin/dashboard" title="Admin Dashboard">
