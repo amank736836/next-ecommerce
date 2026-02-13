@@ -9,7 +9,7 @@ import {
 export const dashboardAPI = createApi({
     reducerPath: "dashboardApi",
     baseQuery: fetchBaseQuery({
-        baseUrl: `${process.env.NEXT_PUBLIC_SERVER_URL}/api/dashboard/`,
+        baseUrl: `${process.env.NEXT_PUBLIC_SERVER_URL || ""}/api/dashboard/`,
     }),
     tagTypes: ["dashboard"],
     endpoints: (builder) => ({

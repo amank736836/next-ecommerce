@@ -17,7 +17,7 @@ import { Coupon } from "../../types/types";
 export const paymentAPI = createApi({
     reducerPath: "paymentApi",
     baseQuery: fetchBaseQuery({
-        baseUrl: `${process.env.NEXT_PUBLIC_SERVER_URL}/api/payment/`,
+        baseUrl: `${process.env.NEXT_PUBLIC_SERVER_URL || ""}/api/payment/`,
     }),
     tagTypes: ["payment", "coupon"],
     endpoints: (builder) => ({

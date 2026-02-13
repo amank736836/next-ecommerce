@@ -13,7 +13,7 @@ import { User } from "../../types/types";
 export const userAPI = createApi({
     reducerPath: "userApi",
     baseQuery: fetchBaseQuery({
-        baseUrl: `${process.env.NEXT_PUBLIC_SERVER_URL}/api/user/`,
+        baseUrl: `${process.env.NEXT_PUBLIC_SERVER_URL || ""}/api/user/`,
     }),
     tagTypes: ["users"],
     endpoints: (builder) => ({
@@ -55,7 +55,7 @@ export const userAPI = createApi({
 export const getUser = async (id: string) => {
     try {
         const { data }: { data: UserResponse } = await axios.get(
-            `${process.env.NEXT_PUBLIC_SERVER_URL}/api/user/${id}`
+            `${process.env.NEXT_PUBLIC_SERVER_URL || ""}/api/user/${id}`
         );
 
         return data;

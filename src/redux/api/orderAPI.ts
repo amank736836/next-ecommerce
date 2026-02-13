@@ -11,7 +11,7 @@ import {
 export const orderAPI = createApi({
     reducerPath: "orderApi",
     baseQuery: fetchBaseQuery({
-        baseUrl: `${process.env.NEXT_PUBLIC_SERVER_URL}/api/order/`,
+        baseUrl: `${process.env.NEXT_PUBLIC_SERVER_URL || ""}/api/order/`,
     }),
     tagTypes: ["orders"],
     endpoints: (builder) => ({

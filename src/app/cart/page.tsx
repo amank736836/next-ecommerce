@@ -36,7 +36,7 @@ const Cart = () => {
         const id = setTimeout(() => {
             axios
                 .post(
-                    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/payment/discount?coupon=${couponCode}`,
+                    `${process.env.NEXT_PUBLIC_SERVER_URL || ""}/api/v1/payment/discount?coupon=${couponCode}`,
                     {
                         cancelToken,
                     }
