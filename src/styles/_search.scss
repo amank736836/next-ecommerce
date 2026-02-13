@@ -4,11 +4,19 @@
     @include flex(row, flex-start, stretch, 2rem);
     min-height: calc(100vh - 2rem);
 
+    .mobile-filter-btn {
+        display: none; // Hidden on desktop
+    }
+
     >aside {
         min-width: 20rem;
         box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.247);
         padding: 2rem;
         @include flex(column, flex-start, stretch, 0.5rem);
+
+        .filter-header {
+            display: none; // Hidden on desktop
+        }
 
         >h2 {
             @include heading;
@@ -72,5 +80,84 @@
                 }
             }
         }
+    }
+
+    // Mobile Responsive Styles
+    @media (max-width: 768px) {
+        flex-direction: column;
+        padding: 6rem 1rem 2rem 1rem; // More top padding for header
+
+        .mobile-filter-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            @include btn(0.8rem 1.5rem, $color3, $color1);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            width: fit-content;
+            font-size: 1rem;
+        }
+
+        >aside {
+            display: none; // Hidden by default on mobile
+            width: 100%;
+            min-width: unset;
+            box-shadow: none;
+            padding: 1rem;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+
+            &.show {
+                display: flex; // Show when toggled
+                animation: slideDown 0.3s ease-out;
+            }
+
+            .filter-header {
+                @include flex(row, space-between, center);
+                width: 100%;
+                display: flex;
+                margin-bottom: 1rem;
+
+                h2 {
+                    margin: 0;
+                }
+
+                .close-filters {
+                    background: transparent;
+                    border: none;
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                    display: block; // Visible on mobile
+                }
+            }
+        }
+
+        >main {
+            padding: 0;
+            width: 100%;
+
+            >input {
+                width: 100%;
+                margin: 0 0 1.5rem 0;
+            }
+
+            .searchProductList {
+                justify-content: center; // Center products on mobile
+                height: auto; // Allow full height scroll
+            }
+        }
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

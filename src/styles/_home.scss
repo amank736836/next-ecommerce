@@ -11,6 +11,13 @@ $color3: rgb(0, 104, 136);
         background-image: url("/banner.svg");
         background-color: $color2;
         background-size: cover;
+        background-position: center; // added for better centering
+
+        @media (max-width: 768px) {
+            height: 20rem; // Reduced height for mobile
+            background-size: contain; // Ensure full image visibility
+            background-repeat: no-repeat;
+        }
     }
 
     >h1 {

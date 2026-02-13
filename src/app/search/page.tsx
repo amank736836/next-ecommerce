@@ -9,17 +9,19 @@ import { CustomError } from "@/types/api-types";
 import Loader from "@/components/Loaders/Loader";
 import { useRouter } from "next/navigation";
 
+import { FaFilter, FaSortAmountDown } from "react-icons/fa";
+
 const Search = () => {
-    const router = useRouter(); // For future use if needed, replacing Navigate
+    const router = useRouter();
     const [search, setSearch] = useState<string>("");
     const [sort, setSort] = useState<string>("");
     const [currentPrice, setCurrentPrice] = useState<number>(100000);
     const [category, setCategory] = useState<string>("");
     const [page, setPage] = useState<number>(1);
     const [loading, setLoading] = useState<boolean>(false);
+    const [showFilters, setShowFilters] = useState<boolean>(false);
 
-    // Debouncing search to prevent excessive API calls causes issues with current hook design?
-    // The original didn't have debounce, so sticking to original logic.
+    // ... (rest of the hooks)
 
     const {
         data: searchProductsResponse,
@@ -40,12 +42,6 @@ const Search = () => {
     const minAmount = searchProductsResponse?.minAmount || 0;
     const maxAmount = searchProductsResponse?.maxAmount || 100000;
 
-    //   if (currentPrice > maxAmount) {
-    //     setCurrentPrice(maxAmount);
-    //   } else if (currentPrice < minAmount) {
-    //     setCurrentPrice(minAmount);
-    //   }
-
     const isPrevPage = page > 1;
     const isNextPage = page < totalPage;
 
@@ -56,17 +52,14 @@ const Search = () => {
                 ? toast.error(err.data.message)
                 : toast.error("Failed to fetch filtered products");
         }
-    }, [isErrorSearchProducts, errorSearchProducts]); // Added dependency
+    }, [isErrorSearchProducts, errorSearchProducts]);
 
     if (isErrorSearchProducts || errorSearchProducts) {
-        // return <Navigate to="/" />; // React Router replacement
-        // router.push("/"); 
-        // Returning null or error message is better safely than redirecting in render
         return <div className="red">Error loading products</div>;
     }
 
     const clearHandler = () => {
-        setLoading(true); // Artificial loading?
+        setLoading(true);
         setSearch("");
         setSort("");
         setCurrentPrice(100000);
@@ -79,8 +72,17 @@ const Search = () => {
 
     return (
         <div className="productSearchPage">
-            <aside>
-                <h2>Filters</h2>
+            <button
+                className="mobile-filter-btn"
+                onClick={() => setShowFilters(!showFilters)}
+            >
+                {showFilters ? "Hide Filters" : "Filters"} <FaFilter />
+            </button>
+            <aside className={showFilters ? "show" : ""}>
+                <div className="filter-header">
+                    <h2>Filters</h2>
+                    <button className="close-filters" onClick={() => setShowFilters(false)}>×</button>
+                </div>
                 <div>
                     <h4>Sort</h4>
                     <select

@@ -82,48 +82,128 @@ body {
 
 .header {
     position: fixed;
-    @include flex(row, flex-end, stretch, 1.2rem);
-    padding: 1rem;
     width: 100%;
     background-color: $color1;
-
-    a {
-        color: $color2;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        font-size: 1.2rem;
-
-        &:hover {
-            color: $color3;
-        }
-    }
-
-    button {
-        border: none;
-        font-size: 1.2rem;
-        cursor: pointer;
-        background-color: transparent;
-
-        &:hover {
-            color: $color3;
-        }
-    }
-
-    dialog {
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 10px;
-        width: 150px;
-        position: absolute;
-        left: calc(100% - 150px);
-        top: 6%;
-
-        >div {
-            @include flex(column, flex-start, center, 0.25rem);
-        }
-
-        z-index: 100;
-    }
-
     z-index: 100;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: $color3;
+        font-weight: 700;
+        font-size: 1.5rem;
+
+        img {
+            height: 2rem;
+            width: 2rem;
+        }
+    }
+
+    // Default Desktop Layout
+    .desktop-nav {
+        @include flex(row, flex-end, stretch, 1.2rem);
+        width: auto; // Changed from 100% to auto to sit next to logo
+
+        a,
+        button {
+            color: $color2;
+            font-size: 1.2rem;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem; // Space between icon and text
+
+            &:hover {
+                color: $color3;
+            }
+        }
+    }
+
+    .mobile-toggle {
+        display: none;
+        font-size: 1.5rem;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        color: $color2;
+        margin-left: auto; // Push to right
+    }
+
+    .mobile-nav {
+        display: none; // Hidden by default
+    }
+
+    // Hide text labels on smaller laptop screens
+    @media (max-width: 1100px) {
+        .desktop-nav {
+
+            a span,
+            button span {
+                display: none;
+            }
+        }
+    }
+
+    // Mobile Responsive Styles
+    @media (max-width: 768px) {
+        .desktop-nav {
+            display: none; // Hide desktop nav
+        }
+
+        .mobile-toggle {
+            display: block; // Show hamburger
+        }
+
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: $color1;
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transform: translateY(-150%); // Slide up initially
+            transition: transform 0.3s ease-in-out;
+            opacity: 0;
+
+            &.open {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            a,
+            button {
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+                color: $color2;
+                border: none;
+                background: transparent;
+                text-align: left;
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                width: 100%;
+                border-bottom: 1px solid #f0f0f0;
+
+                &:hover {
+                    background-color: #f9f9f9;
+                    color: $color3;
+                }
+
+                &:last-child {
+                    border-bottom: none;
+                }
+            }
+        }
+    }
 }
